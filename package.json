@@ -2,10 +2,6 @@
   "name": "safe-stable-stringify",
   "version": "2.4.0",
   "description": "Deterministic and safely JSON.stringify to quickly serialize JavaScript objects",
-  "exports": {
-    "require": "./index.js",
-    "import": "./esm/wrapper.js"
-  },
   "keywords": [
     "stable",
     "stringify",
@@ -21,7 +17,8 @@
     "fast",
     "bigint"
   ],
-  "main": "index.js",
+  "type": "module",
+  "module": "./index.js",
   "scripts": {
     "test": "standard && tap test.js",
     "tap": "tap test.js",
@@ -32,7 +29,7 @@
     "tsc": "tsc --project tsconfig.json"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=14.16"
   },
   "author": "Ruben Bridgewater",
   "license": "MIT",
