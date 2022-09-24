@@ -330,16 +330,19 @@ function configure (options) {
         return `{${res}}`
       }
       case 'number':
-        return isFinite(value) ? String(value) : fail ? fail(value) : 'null'
+        //return isFinite(value) ? String(value) : fail ? fail(value) : 'null'
+        // nix has no infinite numbers:
+        // nix-repl> __div 1 0
+        // error: division by zero
+        // js number -> nix float
+        return ((value | 0) == value) ? `${value}.0` : String(value)
+      case 'bigint':
+        // js bigint -> nix int
+        return parseInt(value)
       case 'boolean':
         return value === true ? 'true' : 'false'
       case 'undefined':
         return undefined
-      case 'bigint':
-        if (bigint) {
-          return String(value)
-        }
-        // fallthrough
       default:
         return fail ? fail(value) : undefined
     }
@@ -422,16 +425,15 @@ function configure (options) {
         return `{${res}}`
       }
       case 'number':
-        return isFinite(value) ? String(value) : fail ? fail(value) : 'null'
+        // js number -> nix float
+        return ((value | 0) == value) ? `${value}.0` : String(value)
+      case 'bigint':
+        // js bigint -> nix int
+        return parseInt(value)
       case 'boolean':
         return value === true ? 'true' : 'false'
       case 'undefined':
         return undefined
-      case 'bigint':
-        if (bigint) {
-          return String(value)
-        }
-        // fallthrough
       default:
         return fail ? fail(value) : undefined
     }
@@ -532,16 +534,15 @@ function configure (options) {
         return `{${res}}`
       }
       case 'number':
-        return isFinite(value) ? String(value) : fail ? fail(value) : 'null'
+        // js number -> nix float
+        return ((value | 0) == value) ? `${value}.0` : String(value)
+      case 'bigint':
+        // js bigint -> nix int
+        return parseInt(value)
       case 'boolean':
         return value === true ? 'true' : 'false'
       case 'undefined':
         return undefined
-      case 'bigint':
-        if (bigint) {
-          return String(value)
-        }
-        // fallthrough
       default:
         return fail ? fail(value) : undefined
     }
@@ -632,16 +633,15 @@ function configure (options) {
         return `{${res}}`
       }
       case 'number':
-        return isFinite(value) ? String(value) : fail ? fail(value) : 'null'
+        // js number -> nix float
+        return ((value | 0) == value) ? `${value}.0` : String(value)
+      case 'bigint':
+        // js bigint -> nix int
+        return parseInt(value)
       case 'boolean':
         return value === true ? 'true' : 'false'
       case 'undefined':
         return undefined
-      case 'bigint':
-        if (bigint) {
-          return String(value)
-        }
-        // fallthrough
       default:
         return fail ? fail(value) : undefined
     }
