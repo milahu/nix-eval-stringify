@@ -318,7 +318,8 @@ function configure (options) {
         // nix-repl> __div 1 0
         // error: division by zero
         // js number -> nix float
-        return ((value | 0) == value) ? `${value}.0` : String(value)
+        // float precision: 6 digits after comma
+        return ((value | 0) == value) ? `${value}.0` : String(parseFloat(value.toFixed(6)))
       case 'bigint':
         // js bigint -> nix int
         return parseInt(value)
@@ -409,7 +410,7 @@ function configure (options) {
       }
       case 'number':
         // js number -> nix float
-        return ((value | 0) == value) ? `${value}.0` : String(value)
+        return ((value | 0) == value) ? `${value}.0` : String(parseFloat(value.toFixed(6)))
       case 'bigint':
         // js bigint -> nix int
         return parseInt(value)
@@ -518,7 +519,7 @@ function configure (options) {
       }
       case 'number':
         // js number -> nix float
-        return ((value | 0) == value) ? `${value}.0` : String(value)
+        return ((value | 0) == value) ? `${value}.0` : String(parseFloat(value.toFixed(6)))
       case 'bigint':
         // js bigint -> nix int
         return parseInt(value)
@@ -617,7 +618,7 @@ function configure (options) {
       }
       case 'number':
         // js number -> nix float
-        return ((value | 0) == value) ? `${value}.0` : String(value)
+        return ((value | 0) == value) ? `${value}.0` : String(parseFloat(value.toFixed(6)))
       case 'bigint':
         // js bigint -> nix int
         return parseInt(value)
