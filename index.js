@@ -2,23 +2,6 @@
 
 const { hasOwnProperty } = Object.prototype
 
-const stringify = configure()
-
-// @ts-expect-error
-stringify.configure = configure
-// @ts-expect-error
-stringify.stringify = stringify
-
-// @ts-expect-error
-stringify.default = stringify
-
-// @ts-expect-error used for named export
-exports.stringify = stringify
-// @ts-expect-error used for named export
-exports.configure = configure
-
-module.exports = stringify
-
 // eslint-disable-next-line
 const strEscapeSequencesRegExp = /[\u0000-\u001f\u0022\u005c\ud800-\udfff]|[\ud800-\udbff](?![\udc00-\udfff])|(?:[^\ud800-\udbff]|^)[\udc00-\udfff]/
 // eslint-disable-next-line
@@ -672,3 +655,5 @@ function configure (options) {
 
   return stringify
 }
+
+export { configure }
