@@ -626,6 +626,14 @@ function configure (options) {
         return value === true ? 'true' : 'false'
       case 'undefined':
         return undefined
+      case 'function':
+        if (value.source) {
+          // :line:column
+          return `«lambda @ ${value.source.file}:${value.source.line}:${value.source.column}»`
+          // +from-to
+          //return `«lambda @ ${value.source.file}+${value.source.from}-${value.source.to}»`
+        }
+        return `«lambda»`
       default:
         return fail ? fail(value) : undefined
     }
