@@ -1,6 +1,7 @@
 'use strict'
 
-const { hasOwnProperty } = Object.prototype
+// FIXME ReferenceError: Cannot access 'hasOwnProperty' before initialization
+//const { hasOwnProperty } = Object.prototype
 
 // eslint-disable-next-line
 const strEscapeSequencesRegExp = /[\u0000-\u001f\u0022\u005c\ud800-\udfff]|[\ud800-\udbff](?![\udc00-\udfff])|(?:[^\ud800-\udbff]|^)[\udc00-\udfff]/
@@ -113,7 +114,7 @@ function stringifyTypedArray (array, separator, maximumBreadth) {
 }
 
 function getCircularValueOption (options) {
-  if (options && hasOwnProperty.call(options, 'circularValue')) {
+  if (options && Object.prototype.hasOwnProperty.call(options, 'circularValue')) {
     const circularValue = options.circularValue
     if (typeof circularValue === 'string') {
       return `"${circularValue}"`
@@ -135,7 +136,7 @@ function getCircularValueOption (options) {
 
 function getBooleanOption (options, key) {
   let value
-  if (options && hasOwnProperty.call(options, key)) {
+  if (options && Object.prototype.hasOwnProperty.call(options, key)) {
     value = options[key]
     if (typeof value !== 'boolean') {
       throw new TypeError(`The "${key}" argument must be of type boolean`)
@@ -146,7 +147,7 @@ function getBooleanOption (options, key) {
 
 function getPositiveIntegerOption (options, key) {
   let value
-  if (options && hasOwnProperty.call(options, key)) {
+  if (options && Object.prototype.hasOwnProperty.call(options, key)) {
     value = options[key]
     if (typeof value !== 'number') {
       throw new TypeError(`The "${key}" argument must be of type number`)
@@ -179,7 +180,7 @@ function getUniqueReplacerSet (replacerArray) {
 }
 
 function getStrictOption (options) {
-  if (options && hasOwnProperty.call(options, 'strict')) {
+  if (options && Object.prototype.hasOwnProperty.call(options, 'strict')) {
     const value = options.strict
     if (typeof value !== 'boolean') {
       throw new TypeError('The "strict" argument must be of type boolean')
