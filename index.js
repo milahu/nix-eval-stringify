@@ -627,7 +627,12 @@ function configure (options) {
         return ((value | 0) == value) ? `${value}.0` : String(parseFloat(value.toFixed(6)))
       case 'bigint':
         // js bigint -> nix int
-        return parseInt(value)
+        // parseInt will produce float exponent notation for big numbers
+        // example:
+        // 468340976726457153752543329995929
+        // 4.683409767264571e+32
+        //return parseInt(value)
+        return value.toString()
       case 'boolean':
         return value === true ? 'true' : 'false'
       case 'undefined':
