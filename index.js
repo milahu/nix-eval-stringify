@@ -554,6 +554,12 @@ function configure (options) {
           return circularValue
         }
 
+        // NixEval.Env
+        // TODO (value instanceof NixEval.Env)
+        if (value.constructor.name == 'Env') {
+          value = value.data;
+        }
+
         let res = ''
 
         if (Array.isArray(value)) {
