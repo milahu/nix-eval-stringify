@@ -534,6 +534,11 @@ function configure (options) {
   }
 
   function stringifySimple (key, value, stack) {
+    // NixEval.Path
+    // TODO (value instanceof NixEval.Path)
+    if (value.constructor.name == 'Path') {
+      value = value.path;
+    }
     switch (typeof value) {
       case 'string':
         return `"${strEscape(value)}"`
